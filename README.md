@@ -1,2 +1,5 @@
-# wanted_pre_onboarding
-프리온보딩 - Backend 과제
+# Wanted_Pre_Onboarding
+
+## 요구사항
+* 상품을 등록합니다.
+  - 제목, 게시자명, 상품설명, 목표금액, 펀딩종료일, 1회펀딩금액로 구성.
