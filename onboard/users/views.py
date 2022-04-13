@@ -53,3 +53,11 @@ def registerUser(request):
 
     context = {'form':form, 'page':page}
     return render(request, 'users/login_register.html',context)
+
+
+def userInfo(request):
+    profile = request.user.profile
+    fundings = profile.funding_set.all()
+
+    context = {'fundings':fundings}
+    return render(request, 'users/user_info.html',context)

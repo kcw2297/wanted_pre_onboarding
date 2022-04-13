@@ -39,17 +39,15 @@ def CreateFunding(request):
 def UpdateFunding(request, pk):
     profile = request.user.profile
     funding = profile.funding_set.get(id=pk)
-    target = funding.target
     form = UpdateForm(instance=funding)
+    
 
     if request.method == 'POST':
-        form = UpdateForm(instance=funding)
+        form = UpdateForm(request.POST,request.FILES,instance=funding)
         if form.is_valid():
-            funding = form.save(commit=False)
-            funding.target = target
             funding.save()
 
-            return redirect('/')
+        return redirect('/')
     context = {'form':form}
     return render(request, 'funding/funding_form.html', context)
 
@@ -63,7 +61,7 @@ def DeleteFunding(request, pk):
         return redirect('/')
     
     context = {'funding':funding}
-    return render(request, '/',context)
+    return render(request, 'delete.html',context)
 
 
 

@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<form class="form__container" method="POST" enctype="multipart/form-data">
+<form class="form__container"  method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     {% for field in form %}
-    <div class="center">
+    <div>
         <label for="formSearch">{{field.label}}</label>
         {{field}}
     </div>

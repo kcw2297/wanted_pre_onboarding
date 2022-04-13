@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% for funding in fundings %}
+
+<div>
+    <a href="{% url 'funding' funding.id %}"><img src="{{funding.image.url}}" alt="Funding Image"></a>
+    <a href="{% url 'funding' funding.id %}">{{funding.title}}</a>
+    <p>{{funding.description}}</p>
+    <a href="{% url 'update-funding' funding.id %}">Edit</a>
+    <a href="{% url 'delete-funding' funding.id %}">Delete</a>
+</div>
+
+{% endfor %}
+{% endblock content %}
