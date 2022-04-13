@@ -8,6 +8,7 @@ from django.contrib import messages
 
 def loginUser(request):
 
+
     if request.user.is_authenticated:
         return redirect('/')
 
@@ -28,7 +29,7 @@ def loginUser(request):
         else:
             messages.error(request,'Password is incorrect')
 
-    return render(request, 'users/login.html')
+    return render(request, 'users/login_register.html')
 
 
 def logoutUser(request):
@@ -38,6 +39,7 @@ def logoutUser(request):
 
 
 def registerUser(request):
+    page = 'register'
     form = CustomUserCreationForm()
 
     if request.method == 'POST':
@@ -49,5 +51,5 @@ def registerUser(request):
             login(request, user)
             return redirect('/')
 
-    context = {'form':form}
-    return render(request, 'users/user_register.html',context)
+    context = {'form':form, 'page':page}
+    return render(request, 'users/login_register.html',context)

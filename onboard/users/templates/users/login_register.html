@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if page == 'register' %}
+
+<form class="form__container" action="{% url 'register' %}" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+
+    <div class="center">
+        <label for="loginform"> {{field.label}} </label>
+        {{field}}
+
+        {% for error in field.errors %}
+            {{error}}
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+    <input type="submit" value="Register User">
+
+</form>
+
+{% else %}
+
+<form class="form__container" method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Enter Password">
+
+    <input type="submit" value="Submit">
+    <p>아이디가 없으신가요? <a href="{% url 'register' %}">회원가입</a> </p>
+</form>
+
+{% endif %}
+
+{% endblock content %}
