@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
-</head>
+{% extends 'main.html' %}
 
-<body>
-    <div class="menu-bar">
-        <a href="#">Home</a>
-        <a href="#">login</a>
-        <a href="#">register</a>
-        <a href="#">mypage</a>
-    </div>
+
+{% block content %}
 
     <div class="detail__container">
         <div class="detail__box">
@@ -50,6 +37,5 @@
             <div></div>
         </div>
     </div>
-    
-</body>
-</html>
+
+{% endblock content %}
