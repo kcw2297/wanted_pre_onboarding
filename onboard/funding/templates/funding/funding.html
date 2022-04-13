@@ -3,39 +3,16 @@
 
 {% block content %}
 
-    <div class="detail__container">
-        <div class="detail__box">
-            <span>제목</span>
-            <div></div>
-        </div>
-        <div class="detail__box">
-            <span>게시자명</span>
-            <div></div>
-        </div>
-        <div class="detail__box">
-            <span>총펀딩금액</span>
-            <div></div>
-        </div>
-        <div class="detail__box">
-            <span>달성률</span>
-            <div></div>
-        </div>
-        <div class="detail__box">
-            <span>D-day</span>
-            <div></div>
-        </div>
-        <div class="detail__box">
-            <span>상품설명</span>
-            <div></div>
-        </div>
-        <div class="detail__box">
-            <span>목표금액</span>
-            <div></div>
-        </div>
-        <div class="detail__box">
-            <span>참여자 수</span>
-            <div></div>
-        </div>
+    <div>
+      {{funding.title}}
+      {{funding.owner.name}}
+      {{funding.curr_num}}
+      {{funding.achievement}}
+      {{funding.dday}}
+      {{funding.description}}
+      {{funding.target}}
+      {{funding}}
+      {{funding.people_total}}
     </div>
 
 {% endblock content %}

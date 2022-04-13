@@ -13,8 +13,12 @@ def Fundings(request):
     return render(request, 'funding/fundings.html', context)
 
 
-def Funding(request):
-    return render(request, 'funding/funding.html')
+def FundingObj(request, pk):
+    object = Funding.objects.get(id=pk)
+
+    context = {'funding':object}
+
+    return render(request, 'funding/funding.html',context)
 
 
 

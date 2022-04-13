@@ -9,9 +9,12 @@
 </form>
 
 {% for field in fundings %}
-<div class="box__container">
-    <div class="box">{{field}}</div>
+
+<div>
+    <img src="{{field.image.url}}" alt="funding image">
+    <a href="{% url 'funding' field.id %}">{{field}}</a>
 </div>
+
 {% endfor %}
 
 
