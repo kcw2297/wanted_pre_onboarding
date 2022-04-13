@@ -6,4 +6,8 @@ class FundingForm(ModelForm):
     class Meta():
         model = Funding
         fields = ['title', 'image', 'description', 'limitation', 'target' ,'dday']
-        
+    
+class UpdateForm(ModelForm):
+    class Meta():
+        model = Funding
+        fields = ['title', 'image', 'description', 'limitation' ,'dday']

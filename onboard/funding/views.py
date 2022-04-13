@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .utils import SearchFundings
-from .forms import FundingForm
+from .forms import FundingForm, UpdateForm
 from django.contrib.auth.decorators import login_required
 from .models import Funding
 
@@ -9,7 +9,7 @@ from .models import Funding
 def Fundings(request):
     fundings, search_query = SearchFundings(request)
 
-    context = {'fundings':fundings}
+    context = {'fundings':fundings, 'search_query':search_query}
     return render(request, 'funding/fundings.html', context)
 
 
@@ -29,6 +29,7 @@ def CreateFunding(request):
             funding = form.save(commit=False)
             funding.owner = profile
             funding.save()
+            print(funding)
         return redirect('/')
 
     context = {'form':form}
@@ -38,12 +39,15 @@ def CreateFunding(request):
 def UpdateFunding(request, pk):
     profile = request.user.profile
     funding = profile.funding_set.get(id=pk)
-    form = FundingForm(instance=funding)
+    target = funding.target
+    form = UpdateForm(instance=funding)
 
     if request.method == 'POST':
-        form = FundingForm(instance=funding)
+        form = UpdateForm(instance=funding)
         if form.is_valid():
-            form.save()
+            funding = form.save(commit=False)
+            funding.target = target
+            funding.save()
 
             return redirect('/')
     context = {'form':form}
