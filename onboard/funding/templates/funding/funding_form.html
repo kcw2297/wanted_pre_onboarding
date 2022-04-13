@@ -2,37 +2,17 @@
 
 {% block content %}
 
-<form class="form__container">
+<form class="form__container" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for field in form %}
     <div class="center">
-        <label for="formSearch">제목: </label>
-        <textarea id="formSearch" type="text" name="form" placeholder="제목"></textarea>
+        <label for="formSearch">{{field.label}}</label>
+        {{field}}
     </div>
+    {% endfor %}
     
-    <div class="center">
-        <label for="formSearch">게시자명: </label>
-        <textarea id="formSearch" type="text" name="form" placeholder="게시자명"></textarea>
-    </div>
-
-    <div class="center">
-        <label for="formSearch">상품설명: </label>
-        <textarea class="hei" id="formSearch" type="textarea" name="form" placeholder="상품설명"></textarea>
-    </div>
-
-    <div class="center">
-        <label for="formSearch">목표금액: </label>
-        <textarea id="formSearch" type="text" name="form" placeholder="목표금액"></textarea>
-    </div>
-
-    <div class="center">
-        <label for="formSearch">펀딩종료일: </label>
-        <textarea id="formSearch" type="text" name="form" placeholder="펀딩종료일"></textarea>
-    </div>
-
-    <div class="center">
-        <label for="formSearch">1회펀딩금액: </label>
-        <textarea id="formSearch" type="text" name="form" placeholder="4,000,000최대"></textarea>
-    </div>
-    <input type="submit">
+    <input type="submit" value="Submit">
 </form>
 
 {% endblock content %}

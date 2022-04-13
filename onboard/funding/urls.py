@@ -2,9 +2,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('',views.fundings, name="fundings"),
-    path('register/',views.registerFunding, name="funding"),
-    path('detail/<str:pk>/',views.viewDetail, name='detail')
+    path('',views.Fundings, name="fundings"),
+    path('funding/<str:pk>/',views.Funding, name='funding'),
+    path('create-funding/',views.CreateFunding, name="create-funding"),
+    path('update-funding/<str:pk>',views.UpdateFunding,name='update-funding'),
+    path('delete-funding/<str:pk>',views.DeleteFunding,name='delete-funding'),
 ]
 
 

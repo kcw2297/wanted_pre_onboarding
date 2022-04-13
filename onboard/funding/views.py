@@ -1,16 +1,65 @@
 from django.shortcuts import render, redirect
-
+from .utils import SearchFundings
+from .forms import FundingForm
+from django.contrib.auth.decorators import login_required
+from .models import Funding
 
 # Create your views here.
 
-def fundings(request):
-    return render(request, 'funding/fundings.html')
+def Fundings(request):
+    fundings, search_query = SearchFundings(request)
+
+    context = {'fundings':fundings}
+    return render(request, 'funding/fundings.html', context)
+
+
+def Funding(request):
+    return render(request, 'funding/funding.html')
 
 
 
-def registerFunding(request):
-    return render(request, 'funding/funding_form.html')
+@login_required(login_url="login")
+def CreateFunding(request):
+    profile = request.user.profile
+    form = FundingForm()
+
+    if request.method == 'POST':
+        form = FundingForm(request.POST, request.FILES)
+        if form.is_valid():
+            funding = form.save(commit=False)
+            funding.owner = profile
+            funding.save()
+        return redirect('/')
+
+    context = {'form':form}
+    return render(request, 'funding/funding_form.html', context)
+
+@login_required(login_url="login")
+def UpdateFunding(request, pk):
+    profile = request.user.profile
+    funding = profile.funding_set.get(id=pk)
+    form = FundingForm(instance=funding)
+
+    if request.method == 'POST':
+        form = FundingForm(instance=funding)
+        if form.is_valid():
+            form.save()
+
+            return redirect('/')
+    context = {'form':form}
+    return render(request, 'funding/funding_form.html', context)
+
+@login_required(login_url="login")
+def DeleteFunding(request, pk):
+    profile = request.user.profile
+    funding = profile.funding_set.get(id=pk)
+
+    if request.method == 'POST':
+        funding.delete()
+        return redirect('/')
+    
+    context = {'funding':funding}
+    return render(request, '/',context)
 
 
-def viewDetail(request):
-    return render(request, 'funding/detail.html')
+

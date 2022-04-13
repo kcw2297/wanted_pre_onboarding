@@ -2,6 +2,7 @@ from tkinter import CASCADE
 from django.db import models
 import uuid
 from users.models import Profile
+
 # Create your models here.
 
 class Funding(models.Model):
@@ -11,16 +12,16 @@ class Funding(models.Model):
     description = models.CharField(max_length=200) # 상품설명
     image = models.ImageField(null=True, blank=True, default="default.png") # 이미지
     people_total = models.IntegerField(default=0, null=True, blank=True) # 참여자 수
-    target_num = models.IntegerField(default=0, null=True, blank=True) # 목표금액
+    target = models.IntegerField(default=0, null=False, blank=False) # 목표금액
     curr_num = models.IntegerField(default=0, null=True, blank=True) # 총펀딩금액
     achievement = models.IntegerField(default=0, null=True, blank=True) # 달성률
-    num_limit = models.IntegerField(default=0, null=True, blank=True) # 1회펀딩금액
+    limitation = models.IntegerField(default=0, null=False, blank=False) # 1회펀딩금액
     dday = models.DateField() # d-day
-    
+    title = models.CharField(max_length=200, default='default title')
     
 
     def __str__(self):
-        return self.owner
+        return str(self.title)
 
 
 class Participant(models.Model):

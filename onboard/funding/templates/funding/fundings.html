@@ -3,33 +3,22 @@
 {% block content %}
 
 
-<main>
-    <div class="search__main">
-        <div class="seacrh__container">
-            <div>
-                <h2>Search for <span>Projects</span></h2>
-            </div>
-            <form action="" method="get">
-                <div>
-                    <label for="formSearch">Search Your Funding</label>
-                    <input id="formSearch" type="text" name="search" placeholder="Enter your funding">
-                </div>
-                <input type="submit">
-            </form>
-        </div>
-    </div>
-</main>
+<form action="{% url 'fundings' %}" method="get" action="{% url 'fundings' %}">
+    <input type="text" name="search_funding" value="Enter funding name">
+    <input type="submit" value="{{search_funding}}" placeholder="찾을 펀딩 이름을 적으세요">
+</form>
 
+{% for field in fundings %}
 <div class="box__container">
-    <div class="box"><img src="#"></div>
-    <div class="box"><img src="#"></div>
-    <div class="box"><img src="#"></div>
+    <div class="box">{{field}}</div>
 </div>
+{% endfor %}
 
-<div class="page">
+
+<!-- <div class="page">
     <div class="button" ></div>
     <div class="button" ></div>
     <div class="button" ></div>
-</div>
+</div> -->
 
 {% endblock content %}
