@@ -4,8 +4,18 @@
 
 
 <form action="{% url 'fundings' %}" method="get" action="{% url 'fundings' %}">
-    <input type="text" name="search" value="{{search}}" placeholder="필터링">
-    <input type="submit" placeholder="찾기">
+    <input type="text" name="search" value="{{search}}" placeholder="검색">
+    <input type="submit" value="찾기">
+</form>
+
+<form action="{% url 'fundings' %}" method="get" action="{% url 'fundings' %}">
+    <input type="hidden" name="order_by" value="생성일">
+    <input type="submit" value="생성일 정렬">
+</form>
+
+<form action="{% url 'fundings' %}" method="get" action="{% url 'fundings' %}">
+    <input type="hidden" name="order_by" value="총펀딩금액">
+    <input type="submit" value="총펀딩금액 정렬">
 </form>
 
 {% for field in fundings %}
@@ -20,12 +30,5 @@
 </div>
 
 {% endfor %}
-
-
-<!-- <div class="page">
-    <div class="button" ></div>
-    <div class="button" ></div>
-    <div class="button" ></div>
-</div> -->
 
 {% endblock content %}

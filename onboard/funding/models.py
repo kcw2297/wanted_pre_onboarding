@@ -12,7 +12,7 @@ class Funding(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False) # id
     owner = models.ForeignKey(Profile,null=True,blank=True,on_delete=models.CASCADE) # 게시자명
     description = models.CharField(max_length=200) # 상품설명
-    image = models.ImageField(null=True, blank=True, default="") # 이미지
+    image = models.ImageField(null=True, blank=True, default="default.png") # 이미지
     target = models.IntegerField(default=0, null=False, blank=False) # 목표금액
     total_num = models.IntegerField(default=0, null=True, blank=True) # 총펀딩금액
     limitation = models.IntegerField(default=0, null=False, blank=False) # 1회펀딩금액

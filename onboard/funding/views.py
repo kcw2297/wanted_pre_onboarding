@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .utils import SearchFundings
+from .utils import SearchFundings, Sorting
 from .forms import FundingForm, UpdateForm
 from django.contrib.auth.decorators import login_required
 from .models import Funding, Participant
@@ -8,6 +8,7 @@ from .models import Funding, Participant
 
 def Fundings(request):
     fundings, search = SearchFundings(request)
+    fundings = Sorting(request, fundings)
 
 
     context = {'fundings':fundings, 'search':search}
