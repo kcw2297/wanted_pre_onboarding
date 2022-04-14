@@ -13,10 +13,9 @@
 <div>
     <img src="{{field.image.url}}" alt="funding image">
     <a href="{% url 'funding' field.id %}">{{field}}</a>
-    <p>{{field.title}}</p>
     <p>{{field.owner}}</p>
     <p>{{field.total_num}}</p>
-    <!-- <p>{{field.achievement}}</p> 달성률 -->
+    <p>{{field.percentage}}%</p>
     <p>{{field.dday}}</p>
 </div>
 

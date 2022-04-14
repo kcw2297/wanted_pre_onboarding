@@ -9,6 +9,7 @@ from .models import Funding, Participant
 def Fundings(request):
     fundings, search = SearchFundings(request)
 
+
     context = {'fundings':fundings, 'search':search}
     return render(request, 'funding/fundings.html', context)
 
@@ -20,6 +21,8 @@ def FundingObj(request, pk):
         owner = profile,
         funding = object
     )
+
+    count = object.participant_set.count()
     
 
     if check:
@@ -33,7 +36,7 @@ def FundingObj(request, pk):
         object.save()
         redirect('funding/funding.html')
 
-    context = {'funding':object, 'page':page}
+    context = {'funding':object, 'page':page, 'count':count}
 
     return render(request, 'funding/funding.html',context)
 
