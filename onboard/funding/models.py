@@ -15,7 +15,7 @@ class Funding(models.Model):
     image = models.ImageField(null=True, blank=True, default="") # 이미지
     people_total = models.IntegerField(default=0, null=True, blank=True) # 참여자 수
     target = models.IntegerField(default=0, null=False, blank=False) # 목표금액
-    curr_num = models.IntegerField(default=0, null=True, blank=True) # 총펀딩금액
+    total_num = models.IntegerField(default=0, null=True, blank=True) # 총펀딩금액
     achievement = models.IntegerField(default=0, null=True, blank=True) # 달성률
     limitation = models.IntegerField(default=0, null=False, blank=False) # 1회펀딩금액
     dday = models.DateField('D-Day(mm/dd/yyyy)',auto_now_add=False, auto_now=False, null=False, blank=True) # d-day
@@ -29,7 +29,6 @@ class Funding(models.Model):
 class Participant(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     funding = models.ForeignKey(Funding, on_delete=models.CASCADE)
-    invest = models.IntegerField(default=0, null=True, blank=True) # 투자금액
     created = models.DateTimeField(auto_now_add=True) # 생성일
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False) # id
 

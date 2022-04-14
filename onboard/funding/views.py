@@ -2,21 +2,38 @@ from django.shortcuts import render, redirect
 from .utils import SearchFundings
 from .forms import FundingForm, UpdateForm
 from django.contrib.auth.decorators import login_required
-from .models import Funding
+from .models import Funding, Participant
 
 # Create your views here.
 
 def Fundings(request):
-    fundings, search_query = SearchFundings(request)
+    fundings, search = SearchFundings(request)
 
-    context = {'fundings':fundings, 'search_query':search_query}
+    context = {'fundings':fundings, 'search':search}
     return render(request, 'funding/fundings.html', context)
 
-
+@login_required(login_url="login")
 def FundingObj(request, pk):
     object = Funding.objects.get(id=pk)
+    profile = request.user.profile
+    check = Participant.objects.filter(
+        owner = profile,
+        funding = object
+    )
+    
 
-    context = {'funding':object}
+    if check:
+        page = 'exist'
+    else:
+        Participant.objects.create(owner=profile,funding=object)
+        page = 'create'
+
+    if request.method == 'POST':
+        object.total_num += object.limitation
+        object.save()
+        redirect('funding/funding.html')
+
+    context = {'funding':object, 'page':page}
 
     return render(request, 'funding/funding.html',context)
 
@@ -66,6 +83,4 @@ def DeleteFunding(request, pk):
     
     context = {'funding':funding}
     return render(request, 'delete.html',context)
-
-
 

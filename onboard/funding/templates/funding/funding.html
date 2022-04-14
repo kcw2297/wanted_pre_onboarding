@@ -2,17 +2,33 @@
 
 
 {% block content %}
+  <p>제목</p>
+  {{funding.title}}
+  <p>게시자명</p>
+  {{funding.owner}}
+  <p>총펀딩금액</p>
+  {{funding.total_num}}
+  <p>달성률</p>
+  {{funding.achievement}}
+  <p>D-day</p>
+  {{funding.dday}}
+  <p>상품설명</p>
+  {{funding.description}}
+  <p>목표금액</p>
+  {{funding.target}}
+  <p>참여자수</p>
+  {{funding.people_total}}
 
-    <div>
-      {{funding.title}}
-      {{funding.owner.name}}
-      {{funding.curr_num}}
-      {{funding.achievement}}
-      {{funding.dday}}
-      {{funding.description}}
-      {{funding.target}}
-      {{funding}}
-      {{funding.people_total}}
-    </div>
+  {% if page == 'exist' %}
+  <p>이미 펀딩을 하였습니다</p>
+  {% else %}
+  <p></p>
+  <form method="POST">
+    {% csrf_token %}
+    <p>펀딩 1회 금액: {{funding.limitation}}</p>
+    <input type="hidden" value="{{funding.limitation}}">
+    <input type="submit">
+  </form>
+  {% endif %}
 
 {% endblock content %}

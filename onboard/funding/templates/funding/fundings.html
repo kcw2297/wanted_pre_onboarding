@@ -4,8 +4,8 @@
 
 
 <form action="{% url 'fundings' %}" method="get" action="{% url 'fundings' %}">
-    <input type="text" name="search_funding" value="Enter funding name">
-    <input type="submit" value="{{search_funding}}" placeholder="찾을 펀딩 이름을 적으세요">
+    <input type="text" name="search" value="{{search}}" placeholder="필터링">
+    <input type="submit" placeholder="찾기">
 </form>
 
 {% for field in fundings %}
@@ -13,6 +13,11 @@
 <div>
     <img src="{{field.image.url}}" alt="funding image">
     <a href="{% url 'funding' field.id %}">{{field}}</a>
+    <p>{{field.title}}</p>
+    <p>{{field.owner}}</p>
+    <p>{{field.total_num}}</p>
+    <!-- <p>{{field.achievement}}</p> 달성률 -->
+    <p>{{field.dday}}</p>
 </div>
 
 {% endfor %}

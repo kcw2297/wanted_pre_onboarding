@@ -10,8 +10,6 @@ def SearchFundings(request):
         search_query = request.GET.get('search_funding')
     
     fundings = Funding.objects.distinct().filter(
-        Q(owner__name__icontains=search_query) |
-        Q(description__icontains=search_query) |
         Q(title__icontains=search_query)
     )
 
