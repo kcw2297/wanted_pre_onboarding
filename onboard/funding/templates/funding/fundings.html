@@ -21,12 +21,12 @@
 {% for field in fundings %}
 
 <div>
-    <img src="{{field.image.url}}" alt="funding image">
-    <a href="{% url 'funding' field.id %}">{{field}}</a>
-    <p>{{field.owner}}</p>
-    <p>{{field.total_num}}</p>
-    <p>{{field.percentage}}%</p>
-    <p>{{field.dday}}</p>
+    <img src="{{field.image.url}}" alt="funding image" style="width:100px;height:100px">
+    <p><a href="{% url 'funding' field.id %}">{{field.title}}</a></p>
+    <p>주최자: {{field.owner}}</p>
+    <p>총펀딩금액: {{field.total_num}}</p>
+    <p>참여도: {{field.percentage}}%</p>
+    <p>Dday: {{field.dday}}</p>
 </div>
 
 {% endfor %}
