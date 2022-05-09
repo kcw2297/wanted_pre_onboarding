@@ -65,3 +65,10 @@
 * Unit Test 구현
 * README에 요구사항 분석 및 구현 과정을 작성
 * Git commit 메시지 컨벤션
+
+
+
+### 김채욱
+* Test Code
+  - Restaurant/ Group API를 method들별 테스트 기능을 작성하였습니다
+  - Model 부분은 facotry boy와 faker를 이용해 구현하였습니다
